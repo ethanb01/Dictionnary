@@ -20,6 +20,23 @@ int main(int argc ,char ** argv){
     }
     fclose(src);
     fclose(temp);
+
+	src = fopen(argv[1],"w+");
+	temp = fopen("temp.txt","r");
+	int c;
+ 	while( ( c = fgetc(temp) ) != EOF )
+    	fputc(c, src);
+    fclose(src);
+    fclose(temp);
+    int status = remove("temp.txt");
+    if (status == 0)
+    	printf("%s file deleted successfully.\n", "temp.txt");
+  	else
+  	{
+    	printf("Unable to delete the file\n");
+	    perror("Following error occurred");
+  	}
+
 	return 0;
 
 }
